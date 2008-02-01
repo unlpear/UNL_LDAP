@@ -67,4 +67,22 @@ class UNL_LDAP_Result implements Countable, Iterator
         $this->_valid  = true;
         $this->_currentEntry = ldap_first_entry($this->_link, $this->_result);
     }
+    
+    function __destruct()
+    {
+        unset($this->_currentEntry);
+        @ldap_free_result($this->_result);
+    }
+    
+    /**
+     * Sort the returned results by a specific attribute
+     *
+     * @param string $attr Attribute to sort by
+     */
+    public function sort($attr)
+    {
+        if (!ldap_sort($this->_link, $this->_result, $attr)) {
+            throw new Exception('Failed to sort by '.$attr);
+        }
+    }
 }

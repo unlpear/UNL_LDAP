@@ -117,6 +117,15 @@ class UNL_LDAP
         }
     }
     
+    /**
+     * Search the directory for matching entries.
+     *
+     * @param string $base   Search base
+     * @param string $filter LDAP filter to use
+     * @param array  $params Optional parameters to add to the LDAP query
+     * 
+     * @return UNL_LDAP_Result
+     */
     public function search($base = null, $filter = null, array $params = array())
     {
         require_once 'UNL/LDAP/Result.php';
