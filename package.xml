@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package packagerversion="1.7.0RC2" version="2.0" xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0
+    http://pear.php.net/dtd/tasks-1.0.xsd
+    http://pear.php.net/dtd/package-2.0
+    http://pear.php.net/dtd/package-2.0.xsd">
+ <name>UNL_LDAP</name>
+ <channel>pear.unl.edu</channel>
+ <summary>LDAP directory services for UNL</summary>
+ <description>This package simplifies connecting to UNL&apos;s LDAP directory for searching for data.</description>
+ <lead>
+  <name>Brett Bieber</name>
+  <user>saltybeagle</user>
+  <email>brett.bieber@gmail.com</email>
+  <active>yes</active>
+ </lead>
+ <date>2008-02-01</date>
+ <time>11:32:19</time>
+ <version>
+  <release>0.1.0</release>
+  <api>0.1.0</api>
+ </version>
+ <stability>
+  <release>alpha</release>
+  <api>alpha</api>
+ </stability>
+ <license uri="http://www1.unl.edu/wdn/wiki/Software_License">BSD</license>
+ <notes>First release.</notes>
+ <contents>
+  <dir baseinstalldir="/" name="/">
+   <dir name="docs">
+    <dir name="examples">
+     <file name="simpleSearch.php" role="doc" />
+    </dir> <!-- /docs/examples -->
+   </dir> <!-- /docs -->
+   <dir name="tests">
+    <file name="UNL_LDAPTest.php" role="test" />
+   </dir> <!-- /tests -->
+   <dir name="UNL">
+    <dir name="LDAP">
+     <file name="Entry.php" role="php" />
+     <file name="People.php" role="php" />
+     <file name="Result.php" role="php" />
+    </dir> <!-- /UNL/LDAP -->
+    <file name="LDAP.php" role="php" />
+   </dir> <!-- /UNL -->
+   <file name="config.sample.php" role="data" />
+  </dir> <!-- / -->
+ </contents>
+ <dependencies>
+  <required>
+   <php>
+    <min>5.0.0</min>
+   </php>
+   <pearinstaller>
+    <min>1.4.3</min>
+   </pearinstaller>
+  </required>
+ </dependencies>
+ <phprelease />
+ <changelog>
+  <release>
+   <version>
+    <release>0.1.0</release>
+    <api>0.1.0</api>
+   </version>
+   <stability>
+    <release>alpha</release>
+    <api>alpha</api>
+   </stability>
+   <date>2008-02-01</date>
+   <license uri="http://www1.unl.edu/wdn/wiki/Software_License">BSD</license>
+   <notes>First release.</notes>
+  </release>
+ </changelog>
+</package>
