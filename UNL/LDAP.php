@@ -52,8 +52,8 @@ class UNL_LDAP
      */
     private function __construct()
     {
-        $this->ldap = ldap_connect(UNL_LDAP::$options['uri']);
-        ldap_bind($this->ldap, UNL_LDAP::$options['binddn'], UNL_LDAP::$options['bind_password']);
+        UNL_LDAP::$ldap = ldap_connect(UNL_LDAP::$options['uri']);
+        ldap_bind(UNL_LDAP::$ldap, UNL_LDAP::$options['binddn'], UNL_LDAP::$options['bind_password']);
     }
 
     private function __clone() {}
@@ -115,5 +115,23 @@ class UNL_LDAP
         } else {
             return false;
         }
+    }
+    
+    public function search($base = null, $filter = null, array $params = array())
+    {
+        require_once 'UNL/LDAP/Result.php';
+        /* setting searchparameters  */
+        (isset($params['sizelimit']))  ? $sizelimit  = $params['sizelimit']  : $sizelimit = 0;
+        (isset($params['timelimit']))  ? $timelimit  = $params['timelimit']  : $timelimit = 0;
+        (isset($params['attrsonly']))  ? $attrsonly  = $params['attrsonly']  : $attrsonly = 0;
+        (isset($params['attributes'])) ? $attributes = $params['attributes'] : $attributes = array();
+        
+        $sr = ldap_search(self::$ldap, $base, $filter, $attributes, $attrsonly, $sizelimit, $timelimit);
+        return new UNL_LDAP_Result(self::$ldap, $sr);
+    }
+    
+    function __toString()
+    {
+        return self::$ldap;
     }
 }
