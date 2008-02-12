@@ -3,7 +3,7 @@
  * This class is a singleton class for operating with the UNL LDAP directory.
  * 
  * <code>
- * UNL_LDAP::$options['binddn']        = 'uid=youruseridhere,ou=service,dc=unl,dc=edu';
+ * UNL_LDAP::$options['bind_dn']        = 'uid=youruseridhere,ou=service,dc=unl,dc=edu';
  * UNL_LDAP::$options['bind_password'] = 'passwordhere';
  * echo UNL_LDAP::getConnection()->getFirstAttribute('bbieber2', 'sn');
  * </code>
@@ -53,7 +53,7 @@ class UNL_LDAP
     private function __construct()
     {
         UNL_LDAP::$ldap = ldap_connect(UNL_LDAP::$options['uri']);
-        ldap_bind(UNL_LDAP::$ldap, UNL_LDAP::$options['binddn'], UNL_LDAP::$options['bind_password']);
+        ldap_bind(UNL_LDAP::$ldap, UNL_LDAP::$options['bind_dn'], UNL_LDAP::$options['bind_password']);
     }
 
     private function __clone() {}
