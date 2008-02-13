@@ -34,6 +34,12 @@ class UNL_LDAP_Entry
     
     private $_attributes;
     
+    /**
+     * Construct an LDAP entry object
+     *
+     * @param resource &$link LDAP connection
+     * @param resource $entry Entry resource from ldap_next_entry
+     */
     function __construct(&$link, $entry)
     {
         $this->_link       = $link;
@@ -41,6 +47,13 @@ class UNL_LDAP_Entry
         $this->_attributes = ldap_get_attributes($link, $entry);
     }
     
+    /**
+     * Determines if a specific attribute is set
+     *
+     * @param string $name Attribute name to check
+     * 
+     * @return bool
+     */
     function __isset($name)
     {
         if (isset($this->_attributes[$name])) {
@@ -50,6 +63,13 @@ class UNL_LDAP_Entry
         }
     }
     
+    /**
+     * Retrieve the requested attribute
+     *
+     * @param string $name Attribute to get
+     * 
+     * @return UNL_LDAP_Entry_Attribute
+     */
     function __get($name)
     {
         if (isset($this->_attributes[$name])) {

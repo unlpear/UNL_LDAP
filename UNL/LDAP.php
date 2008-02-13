@@ -96,8 +96,8 @@ class UNL_LDAP
     public function getAttribute($uid, $attribute)
     {
         $uid    = addslashes($uid);
-        $result = ldap_search(self::getConnection()->ldap, self::$options['suffix'], "uid=$uid");
-        $info   = ldap_get_entries(self::getConnection()->ldap, $result);
+        $result = ldap_search(self::$ldap, self::$options['suffix'], "uid=$uid");
+        $info   = ldap_get_entries(self::$ldap, $result);
         
         if (count($info) == 0) {
             return false;

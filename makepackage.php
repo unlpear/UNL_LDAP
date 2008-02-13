@@ -2,7 +2,14 @@
 /**
  * This file generates the package.xml file for the UNL_Services_Peoplefinder package.
  * 
- * @package UNL_LDAP
+ * PHP version 5
+ * 
+ * @category  Default 
+ * @package   UNL_LDAP
+ * @author    Brett Bieber <brett.bieber@gmail.com>
+ * @copyright 2007 Regents of the University of Nebraska
+ * @license   http://www1.unl.edu/wdn/wiki/Software_License BSD License
+ * @link      http://pear.unl.edu/package/UNL_LDAP
  */
 
 /**
@@ -39,7 +46,7 @@ $pfm->setAPIVersion('0.1.0');
 $pfm->setReleaseVersion('0.1.0');
 $pfm->setNotes('First release.');
 
-$pfm->addMaintainer('lead','saltybeagle','Brett Bieber','brett.bieber@gmail.com');
+$pfm->addMaintainer('lead', 'saltybeagle', 'Brett Bieber', 'brett.bieber@gmail.com');
 
 
 $pfm->setLicense('BSD', 'http://www1.unl.edu/wdn/wiki/Software_License');
