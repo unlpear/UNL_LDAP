@@ -22,8 +22,10 @@ if (!defined('PHPUNIT_MAIN_METHOD')) {
 
 require_once 'PHPUnit/Framework.php';
 
-require_once dirname(__FILE__).'/../UNL/LDAP.php';
-require_once dirname(__FILE__).'/../config.inc.php';
+chdir(dirname(__FILE__).'/../');
+
+require_once 'UNL/LDAP.php';
+require_once 'config.inc.php';
 
 /**
  * Test class for UNL_LDAP.
