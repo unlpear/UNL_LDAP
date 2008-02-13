@@ -38,7 +38,19 @@ class UNL_LDAP_Entry
     function __get($name)
     {
         if (isset($this->_attributes[$name])) {
-            return $this->_attributes[$name]['0'];
+			if($this->_attributes[$name]['count'] > 1)
+			{
+				$all = array();
+				for($i = 0; $i < $this->_attributes[$name]['count']; $i++)
+				{
+					$all[] = $this->_attributes[$name][$i];
+				}
+				return $all;
+			}
+			else
+			{
+				return $this->_attributes[$name]['0'];
+			}
         }
     }
 }
