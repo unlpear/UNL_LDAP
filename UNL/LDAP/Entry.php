@@ -1,4 +1,7 @@
 <?php
+
+require_once 'UNL/LDAP/Entry/Attribute.php';
+
 /**
  * LDAP entry record.
  *
@@ -38,19 +41,7 @@ class UNL_LDAP_Entry
     function __get($name)
     {
         if (isset($this->_attributes[$name])) {
-			if($this->_attributes[$name]['count'] > 1)
-			{
-				$all = array();
-				for($i = 0; $i < $this->_attributes[$name]['count']; $i++)
-				{
-					$all[] = $this->_attributes[$name][$i];
-				}
-				return $all;
-			}
-			else
-			{
-				return $this->_attributes[$name]['0'];
-			}
+			return new UNL_LDAP_Entry_Attribute($this->_attributes[$name]);
         }
     }
 }
