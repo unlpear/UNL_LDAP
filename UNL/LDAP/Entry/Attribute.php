@@ -1,8 +1,10 @@
 <?php
 /**
- * LDAP entry record.
+ * LDAP attribute object
  *
  * PHP version 5
+ * 
+ * $Id$
  * 
  * @category  Default 
  * @package   UNL_LDAP

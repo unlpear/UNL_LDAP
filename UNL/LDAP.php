@@ -3,12 +3,14 @@
  * This class is a singleton class for operating with the UNL LDAP directory.
  * 
  * <code>
- * UNL_LDAP::$options['bind_dn']        = 'uid=youruseridhere,ou=service,dc=unl,dc=edu';
+ * UNL_LDAP::$options['bind_dn']       = 'uid=youruseridhere,ou=service,dc=unl,dc=edu';
  * UNL_LDAP::$options['bind_password'] = 'passwordhere';
  * echo UNL_LDAP::getConnection()->getFirstAttribute('bbieber2', 'sn');
  * </code>
  *
  * PHP version 5
+ * 
+ * $Id$
  * 
  * @category  Default 
  * @package   UNL_LDAP
@@ -56,7 +58,15 @@ class UNL_LDAP
         ldap_bind(UNL_LDAP::$ldap, UNL_LDAP::$options['bind_dn'], UNL_LDAP::$options['bind_password']);
     }
 
-    private function __clone() {}
+    /**
+     * disallow cloning
+     * 
+     * @return void
+     */
+    private function __clone()
+    {
+        
+    }
     
     /**
      * Get the LDAP connection
@@ -70,7 +80,7 @@ class UNL_LDAP
     public static function getConnection()
     {
         if (self::$connection === null) {
-          self::$connection = new self;
+            self::$connection = new self;
         }
         return self::$connection;
     }
@@ -128,7 +138,7 @@ class UNL_LDAP
      */
     public function search($base = null, $filter = null, array $params = array())
     {
-        require_once 'UNL/LDAP/Result.php';
+        include_once 'UNL/LDAP/Result.php';
         /* setting searchparameters  */
         (isset($params['sizelimit']))  ? $sizelimit  = $params['sizelimit']  : $sizelimit = 0;
         (isset($params['timelimit']))  ? $timelimit  = $params['timelimit']  : $timelimit = 0;
@@ -139,6 +149,13 @@ class UNL_LDAP
         return new UNL_LDAP_Result(self::$ldap, $sr);
     }
     
+    /**
+     * return the ldap connection
+     *
+     * FIXME
+     * 
+     * @return mixed
+     */
     function __toString()
     {
         return self::$ldap;
