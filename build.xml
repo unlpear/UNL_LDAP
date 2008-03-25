@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="UNL_LDAP" default="build" basedir=".">
-  <target name="build" depends="php-documentor,php-codesniffer,phpunit"/>
+  <target name="build" depends="checkphp,php-documentor,php-codesniffer,phpunit"/>
+  <target name="checkphp">
+    <apply executable="php" failonerror="true">
+      <arg value="-l" />
+      <fileset dir="${basedir}">
+        <include name="**/*.php" />
+      </fileset>
+    </apply>
+  </target>
   <target name="php-documentor">
     <exec executable="phpdoc" dir="${basedir}" logerror="on">
       <arg line="-ue on -t ${basedir}/build/api -d ."/>
