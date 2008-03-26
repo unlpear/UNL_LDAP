@@ -17,7 +17,7 @@ chdir(dirname(__FILE__).'/../../');
 require_once 'UNL/LDAP.php';
 require_once 'config.inc.php';
 
-$ldap   = UNL_LDAP::getConnection();
+$ldap   = UNL_LDAP::getConnection($options);
 $result = $ldap->search('dc=unl,dc=edu', '(|(sn=ryan lim)(cn=ryan lim)(&(| (givenname=ryan) (sn=ryan) (mail=ryan) (unlemailnickname=ryan) (unlemailalias=ryan))(| (givenname=lim) (sn=lim) (mail=lim) (unlemailnickname=lim) (unlemailalias=lim))))');
 
 $result->sort('uid');

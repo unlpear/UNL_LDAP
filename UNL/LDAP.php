@@ -14,13 +14,15 @@
  * @link      http://pear.unl.edu/package/UNL_LDAP
  */
 
+require_once 'UNL/LDAP/Exception.php';
+
 /**
  * This class is a singleton class for operating with the UNL LDAP directory.
  * 
  * <code>
- * UNL_LDAP::$options['bind_dn']       = 'uid=youruseridhere,ou=service,dc=unl,dc=edu';
- * UNL_LDAP::$options['bind_password'] = 'passwordhere';
- * echo UNL_LDAP::getConnection()->getFirstAttribute('bbieber2', 'sn');
+ * $options['bind_dn']       = 'uid=youruseridhere,ou=service,dc=unl,dc=edu';
+ * $options['bind_password'] = 'passwordhere';
+ * echo UNL_LDAP::getConnection($options)->getFirstAttribute('bbieber2', 'sn');
  * </code>
  * 
  * @category  Default 
@@ -32,51 +34,63 @@
  */
 class UNL_LDAP
 {
-    /**
-     * Singleton instance of UNL_LDAP
-     *
-     * @var UNL_LDAP
-     */
-    private static $_connection;
     
     /**
      * The actual ldap connection link id.
      *
      * @var link
      */
-    private static $_ldap;
+    private $_ldap = false;
     
     /**
      * @var array
      */
-    public static $options = array( 'uri'           => 'ldap://ldap.unl.edu:389/',
-                                    'base'          => 'dc=unl,dc=edu',
-                                    'suffix'        => 'ou=People,dc=unl,dc=edu',
-                                    'bind_dn'       => 'get this from the identity management team',
-                                    'bind_password' => 'get this from the identity management team');
+    public $options = array('uri'           => 'ldap://ldap.unl.edu:389/',
+                            'base'          => 'dc=unl,dc=edu',
+                            'suffix'        => 'ou=People,dc=unl,dc=edu',
+                            'bind_dn'       => 'get this from the identity management team',
+                            'bind_password' => 'get this from the identity management team');
     
     /**
-     * singleton
-     * 
      * <code>
-     * UNL_LDAP::getConnection()->getAttribute('bbieber','cn');
+     * UNL_LDAP::getConnection($options)->getAttribute('bbieber','cn');
      * </code>
      *
      */
-    private function __construct()
+    public function __construct(array $options = NULL)
     {
-        UNL_LDAP::$_ldap = ldap_connect(UNL_LDAP::$options['uri']);
-        ldap_bind(UNL_LDAP::$_ldap, UNL_LDAP::$options['bind_dn'], UNL_LDAP::$options['bind_password']);
+        $this->setOptions($options);
     }
-
+    
     /**
-     * disallow cloning
+     * Set options for the ldap connection.
      * 
+     * @param array $options Associative array of options to set.
+     *
      * @return void
      */
-    private function __clone()
+    public function setOptions(array $options = NULL)
     {
-        
+        if (count($options)) {
+            foreach ($options as $attr=>$value) {
+                $this->options[$attr] = $value;
+            }
+        }
+    }
+    
+    /**
+     * Connect & bind to the directory.
+     *
+     * @return UNL_LDAP
+     */
+    public function connect()
+    {
+        if ($this->_ldap !== false) {
+            return $this;
+        }
+        $this->_ldap = ldap_connect($this->options['uri']);
+        ldap_bind($this->_ldap, $this->options['bind_dn'], $this->options['bind_password']);
+        return $this;
     }
     
     /**
@@ -88,12 +102,10 @@ class UNL_LDAP
      *
      * @return UNL_LDAP
      */
-    public static function getConnection()
+    public static function getConnection(array $options = null)
     {
-        if (self::$_connection === null) {
-            self::$_connection = new self;
-        }
-        return self::$_connection;
+        $ldap = new self($options);
+        return $ldap->connect();
     }
     
     /**
@@ -107,8 +119,8 @@ class UNL_LDAP
     public function getAttribute($uid, $attribute)
     {
         $uid    = addslashes($uid);
-        $result = ldap_search(self::$_ldap, self::$options['suffix'], "uid=$uid");
-        $info   = ldap_get_entries(self::$_ldap, $result);
+        $result = ldap_search($this->_ldap, $this->options['suffix'], "uid=$uid");
+        $info   = ldap_get_entries($this->_ldap, $result);
         
         if (count($info) == 0) {
             return false;
@@ -155,20 +167,41 @@ class UNL_LDAP
         (isset($params['timelimit']))  ? $timelimit  = $params['timelimit']  : $timelimit = 0;
         (isset($params['attrsonly']))  ? $attrsonly  = $params['attrsonly']  : $attrsonly = 0;
         (isset($params['attributes'])) ? $attributes = $params['attributes'] : $attributes = array();
-        
-        $sr = ldap_search(self::$_ldap, $base, $filter, $attributes, $attrsonly, $sizelimit, $timelimit);
-        return new UNL_LDAP_Result(self::$_ldap, $sr);
+
+        $sr = ldap_search($this->_ldap, $base, $filter, $attributes, $attrsonly, $sizelimit, $timelimit);
+        if ($sr === false) {
+            throw new UNL_LDAP_Exception('Search failed');
+        }
+        return new UNL_LDAP_Result($this->_ldap, $sr);
     }
     
     /**
-     * return the ldap connection
+     * returns the ldap connection resource link
      *
-     * FIXME
-     * 
-     * @return mixed
+     * @return resource
      */
-    function __toString()
+    public function &getLink()
     {
-        return self::$ldap;
+        return $this->_ldap;
+    }
+    
+    /**
+     * unbinds from the ldap directory.
+     * 
+     * @return void
+     */
+    function disconnect()
+    {
+        return ldap_unbind($this->_ldap);
+    }
+    
+    /**
+     * destroy the object
+     *
+     * @return void
+     */
+    function __destruct()
+    {
+       $this->disconnect();
     }
 }

@@ -71,7 +71,8 @@ class UNL_LDAPTest extends PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
-        $this->object = UNL_LDAP::getConnection();
+        global $options;
+        $this->object = UNL_LDAP::getConnection($options);
     }
 
     /**
