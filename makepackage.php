@@ -25,9 +25,9 @@ require_once 'PEAR/Frontend.php';
  */
 PEAR::setErrorHandling(PEAR_ERROR_DIE);
 chdir(dirname(__FILE__));
-//$pfm = PEAR_PackageFileManager2::importOptions('package.xml', array(
-$pfm = new PEAR_PackageFileManager2();
-$pfm->setOptions(array(
+$pfm = PEAR_PackageFileManager2::importOptions('package.xml', array(
+//$pfm = new PEAR_PackageFileManager2();
+//$pfm->setOptions(array(
     'packagedirectory' => dirname(__FILE__),
     'baseinstalldir' => '/',
     'filelistgenerator' => 'file',
@@ -42,11 +42,16 @@ $pfm->setDescription('This package simplifies connecting to UNL\'s LDAP director
 $pfm->setChannel('pear.unl.edu');
 $pfm->setAPIStability('alpha');
 $pfm->setReleaseStability('alpha');
-$pfm->setAPIVersion('0.1.0');
-$pfm->setReleaseVersion('0.1.0');
-$pfm->setNotes('First release.');
+$pfm->setAPIVersion('0.2.0');
+$pfm->setReleaseVersion('0.2.0');
+$pfm->setNotes('
+API change feature release
+* Remove singleton - multiple connections and multiple directories can now be used.
+* Add setOptions(), connect(), disconnect(), &getLink() methods.
+* Implement destructor which disconnects from the server.
+');
 
-$pfm->addMaintainer('lead', 'saltybeagle', 'Brett Bieber', 'brett.bieber@gmail.com');
+//$pfm->addMaintainer('lead', 'saltybeagle', 'Brett Bieber', 'brett.bieber@gmail.com');
 
 
 $pfm->setLicense('BSD', 'http://www1.unl.edu/wdn/wiki/Software_License');
