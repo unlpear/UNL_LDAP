@@ -55,9 +55,10 @@ class UNL_LDAP
      * <code>
      * UNL_LDAP::getConnection($options)->getAttribute('bbieber','cn');
      * </code>
-     *
+     * 
+     * @param array $options Associative array of options.
      */
-    public function __construct(array $options = NULL)
+    public function __construct(array $options = null)
     {
         $this->setOptions($options);
     }
@@ -69,7 +70,7 @@ class UNL_LDAP
      *
      * @return void
      */
-    public function setOptions(array $options = NULL)
+    public function setOptions(array $options = null)
     {
         if (count($options)) {
             foreach ($options as $attr=>$value) {
@@ -97,8 +98,10 @@ class UNL_LDAP
      * Get the LDAP connection
      * 
      * <code>
-     * $conn = UNL_LDAP::getConnection();
+     * $conn = UNL_LDAP::getConnection($options);
      * </code>
+     * 
+     * @param array $options Associative array of options to set.
      *
      * @return UNL_LDAP
      */
@@ -202,6 +205,6 @@ class UNL_LDAP
      */
     function __destruct()
     {
-       $this->disconnect();
+        $this->disconnect();
     }
 }
