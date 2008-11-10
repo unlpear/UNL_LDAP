@@ -40,15 +40,14 @@ $pfm->setPackageType('php'); // this is a PEAR-style php script package
 $pfm->setSummary('LDAP directory services for UNL');
 $pfm->setDescription('This package simplifies connecting to UNL\'s LDAP directory for searching for data.');
 $pfm->setChannel('pear.unl.edu');
-$pfm->setAPIStability('alpha');
-$pfm->setReleaseStability('alpha');
-$pfm->setAPIVersion('0.2.0');
-$pfm->setReleaseVersion('0.2.0');
+$pfm->setAPIStability('beta');
+$pfm->setReleaseStability('beta');
+$pfm->setAPIVersion('0.3.0');
+$pfm->setReleaseVersion('0.3.0');
 $pfm->setNotes('
-API change feature release
-* Remove singleton - multiple connections and multiple directories can now be used.
-* Add setOptions(), connect(), disconnect(), &getLink() methods.
-* Implement destructor which disconnects from the server.
+Feature release:
+Issue #8: Throw exception on connection errors.
+Bump stability to beta.
 ');
 
 //$pfm->addMaintainer('lead', 'saltybeagle', 'Brett Bieber', 'brett.bieber@gmail.com');
