@@ -45,7 +45,7 @@ class UNL_LDAP
     /**
      * @var array
      */
-    public $options = array('uri'           => 'ldap://ldap.unl.edu:389/',
+    public $options = array('uri'           => 'ldap://ldap.unl.edu/ ldap://ldap-backup.unl.edu/',
                             'base'          => 'dc=unl,dc=edu',
                             'suffix'        => 'ou=People,dc=unl,dc=edu',
                             'bind_dn'       => 'get this from the identity management team',

@@ -42,12 +42,12 @@ $pfm->setDescription('This package simplifies connecting to UNL\'s LDAP director
 $pfm->setChannel('pear.unl.edu');
 $pfm->setAPIStability('beta');
 $pfm->setReleaseStability('beta');
-$pfm->setAPIVersion('0.3.0');
-$pfm->setReleaseVersion('0.3.0');
+$pfm->setAPIVersion('0.4.0');
+$pfm->setReleaseVersion('0.4.0');
 $pfm->setNotes('
 Feature release:
-Issue #8: Throw exception on connection errors.
-Bump stability to beta.
+Add backup server LDAP server.
+Increase PHP dependency to 5.1.6
 ');
 
 //$pfm->addMaintainer('lead', 'saltybeagle', 'Brett Bieber', 'brett.bieber@gmail.com');
@@ -55,8 +55,8 @@ Bump stability to beta.
 
 $pfm->setLicense('BSD', 'http://www1.unl.edu/wdn/wiki/Software_License');
 $pfm->clearDeps();
-$pfm->setPhpDep('5.0.0');
-$pfm->setPearinstallerDep('1.4.3');
+$pfm->setPhpDep('5.1.6');
+$pfm->setPearinstallerDep('1.5.4');
 
 $pfm->resetUsesRole();
 
