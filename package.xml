@@ -10,11 +10,11 @@
   <email>brett.bieber@gmail.com</email>
   <active>yes</active>
  </lead>
- <date>2008-11-10</date>
- <time>11:47:28</time>
+ <date>2009-05-11</date>
+ <time>14:47:36</time>
  <version>
-  <release>0.3.0</release>
-  <api>0.3.0</api>
+  <release>0.4.0</release>
+  <api>0.4.0</api>
  </version>
  <stability>
   <release>beta</release>
@@ -23,61 +23,11 @@
  <license uri="http://www1.unl.edu/wdn/wiki/Software_License">BSD</license>
  <notes>
 Feature release:
-Issue #8: Throw exception on connection errors.
-Bump stability to beta.
+Add backup LDAP server.
+Increase PHP dependency to 5.1.6
  </notes>
  <contents>
   <dir baseinstalldir="/" name="/">
-   <dir name="build">
-    <dir name="api">
-     <dir name="default">
-      <file name="UNL_LDAP_Exception.html" role="doc" />
-      <file name="_config.inc.php.html" role="doc" />
-      <file name="_config.sample.php.html" role="doc" />
-      <file name="_docs---examples---simpleSearch.php.html" role="doc" />
-      <file name="_docs---examples---twodirectories.php.html" role="doc" />
-      <file name="_UNL---LDAP---Exception.php.html" role="doc" />
-     </dir> <!-- /build/api/default -->
-     <dir name="media">
-      <file name="banner.css" role="data" />
-      <file name="stylesheet.css" role="data" />
-     </dir> <!-- /build/api/media -->
-     <dir name="UNL_LDAP">
-      <file name="UNL_LDAP.html" role="doc" />
-      <file name="UNL_LDAPTest.html" role="doc" />
-      <file name="UNL_LDAP_Entry.html" role="doc" />
-      <file name="UNL_LDAP_Entry_Attribute.html" role="doc" />
-      <file name="UNL_LDAP_Exception.html" role="doc" />
-      <file name="UNL_LDAP_People.html" role="doc" />
-      <file name="UNL_LDAP_Result.html" role="doc" />
-      <file name="_config.inc.php.html" role="doc" />
-      <file name="_config.sample.php.html" role="doc" />
-      <file name="_docs---examples---simpleSearch.php.html" role="doc" />
-      <file name="_makepackage.php.html" role="doc" />
-      <file name="_tests---UNL_LDAPTest.php.html" role="doc" />
-      <file name="_UNL---LDAP---Entry---Attribute.php.html" role="doc" />
-      <file name="_UNL---LDAP---Entry.php.html" role="doc" />
-      <file name="_UNL---LDAP---Exception.php.html" role="doc" />
-      <file name="_UNL---LDAP---People.php.html" role="doc" />
-      <file name="_UNL---LDAP---Result.php.html" role="doc" />
-      <file name="_UNL---LDAP.php.html" role="doc" />
-     </dir> <!-- /build/api/UNL_LDAP -->
-     <file name="blank.html" role="doc" />
-     <file name="classtrees_default.html" role="doc" />
-     <file name="classtrees_UNL_LDAP.html" role="doc" />
-     <file name="elementindex.html" role="doc" />
-     <file name="elementindex_default.html" role="doc" />
-     <file name="elementindex_UNL_LDAP.html" role="doc" />
-     <file name="errors.html" role="doc" />
-     <file name="index.html" role="doc" />
-     <file name="li_default.html" role="doc" />
-     <file name="li_UNL_LDAP.html" role="doc" />
-     <file name="packages.html" role="doc" />
-    </dir> <!-- /build/api -->
-    <dir name="logs">
-     <file name="checkstyle.xml" role="data" />
-    </dir> <!-- /build/logs -->
-   </dir> <!-- /build -->
    <dir name="docs">
     <dir name="examples">
      <file name="simpleSearch.php" role="doc" />
@@ -106,10 +56,10 @@ Bump stability to beta.
  <dependencies>
   <required>
    <php>
-    <min>5.0.0</min>
+    <min>5.1.6</min>
    </php>
    <pearinstaller>
-    <min>1.4.3</min>
+    <min>1.5.4</min>
    </pearinstaller>
   </required>
  </dependencies>
@@ -126,7 +76,9 @@ Bump stability to beta.
    </stability>
    <date>2008-02-01</date>
    <license uri="http://www1.unl.edu/wdn/wiki/Software_License">BSD</license>
-   <notes>First release.</notes>
+   <notes>
+First release.
+   </notes>
   </release>
   <release>
    <version>
@@ -139,10 +91,12 @@ Bump stability to beta.
    </stability>
    <date>2008-03-26</date>
    <license uri="http://www1.unl.edu/wdn/wiki/Software_License">BSD</license>
-   <notes>API change feature release
+   <notes>
+API change feature release
 * Remove singleton - multiple connections and multiple directories can now be used.
 * Add setOptions(), connect(), disconnect(), &amp;getLink() methods.
-* Implement destructor which disconnects from the server.</notes>
+* Implement destructor which disconnects from the server.
+   </notes>
   </release>
   <release>
    <version>
@@ -159,6 +113,23 @@ Bump stability to beta.
 Feature release:
 Issue #8: Throw exception on connection errors.
 Bump stability to beta.
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>0.4.0</release>
+    <api>0.4.0</api>
+   </version>
+   <stability>
+    <release>beta</release>
+    <api>beta</api>
+   </stability>
+   <date>2009-05-11</date>
+   <license uri="http://www1.unl.edu/wdn/wiki/Software_License">BSD</license>
+   <notes>
+Feature release:
+Add backup LDAP server.
+Increase PHP dependency to 5.1.6
    </notes>
   </release>
  </changelog>

@@ -30,8 +30,8 @@ $pfm = PEAR_PackageFileManager2::importOptions('package.xml', array(
 //$pfm->setOptions(array(
     'packagedirectory' => dirname(__FILE__),
     'baseinstalldir' => '/',
-    'filelistgenerator' => 'file',
-    'ignore' => array('package.xml','.project','*.tgz','makepackage.php','config.inc.php'),
+    'filelistgenerator' => 'svn',
+    'ignore' => array('package.xml','.project','*.tgz','makepackage.php','config.inc.php','.buildpath'),
     'simpleoutput' => true,
     'exceptions' => array('config.sample.php'=>'data')
 ));
@@ -46,7 +46,7 @@ $pfm->setAPIVersion('0.4.0');
 $pfm->setReleaseVersion('0.4.0');
 $pfm->setNotes('
 Feature release:
-Add backup server LDAP server.
+Add backup LDAP server.
 Increase PHP dependency to 5.1.6
 ');
 
