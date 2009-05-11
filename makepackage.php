@@ -7,7 +7,7 @@
  * @category  Default 
  * @package   UNL_LDAP
  * @author    Brett Bieber <brett.bieber@gmail.com>
- * @copyright 2007 Regents of the University of Nebraska
+ * @copyright 2009 Regents of the University of Nebraska
  * @license   http://www1.unl.edu/wdn/wiki/Software_License BSD License
  * @link      http://pear.unl.edu/package/UNL_LDAP
  */
