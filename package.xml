@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<package packagerversion="1.8.0alpha1" version="2.0" xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0     http://pear.php.net/dtd/tasks-1.0.xsd     http://pear.php.net/dtd/package-2.0     http://pear.php.net/dtd/package-2.0.xsd">
+<package packagerversion="1.9.0" version="2.0" xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0     http://pear.php.net/dtd/tasks-1.0.xsd     http://pear.php.net/dtd/package-2.0     http://pear.php.net/dtd/package-2.0.xsd">
  <name>UNL_LDAP</name>
  <channel>pear.unl.edu</channel>
  <summary>LDAP directory services for UNL</summary>
@@ -10,10 +10,10 @@
   <email>brett.bieber@gmail.com</email>
   <active>yes</active>
  </lead>
- <date>2009-05-11</date>
- <time>14:47:36</time>
+ <date>2010-04-23</date>
+ <time>09:25:11</time>
  <version>
-  <release>0.4.0</release>
+  <release>0.4.1</release>
   <api>0.4.0</api>
  </version>
  <stability>
@@ -22,9 +22,8 @@
  </stability>
  <license uri="http://www1.unl.edu/wdn/wiki/Software_License">BSD</license>
  <notes>
-Feature release:
-Add backup LDAP server.
-Increase PHP dependency to 5.1.6
+Bugfix Release:
+* Switch to protected attributes instead of private for easier serialization.
  </notes>
  <contents>
   <dir baseinstalldir="/" name="/">
@@ -130,6 +129,22 @@ Bump stability to beta.
 Feature release:
 Add backup LDAP server.
 Increase PHP dependency to 5.1.6
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>0.4.1</release>
+    <api>0.4.0</api>
+   </version>
+   <stability>
+    <release>beta</release>
+    <api>beta</api>
+   </stability>
+   <date>2010-04-23</date>
+   <license uri="http://www1.unl.edu/wdn/wiki/Software_License">BSD</license>
+   <notes>
+Bugfix Release:
+* Switch to protected attributes instead of private for easier serialization.
    </notes>
   </release>
  </changelog>

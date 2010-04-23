@@ -43,11 +43,10 @@ $pfm->setChannel('pear.unl.edu');
 $pfm->setAPIStability('beta');
 $pfm->setReleaseStability('beta');
 $pfm->setAPIVersion('0.4.0');
-$pfm->setReleaseVersion('0.4.0');
+$pfm->setReleaseVersion('0.4.1');
 $pfm->setNotes('
-Feature release:
-Add backup LDAP server.
-Increase PHP dependency to 5.1.6
+Bugfix Release:
+* Switch to protected attributes instead of private for easier serialization.
 ');
 
 //$pfm->addMaintainer('lead', 'saltybeagle', 'Brett Bieber', 'brett.bieber@gmail.com');
