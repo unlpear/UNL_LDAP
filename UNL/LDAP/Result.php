@@ -41,6 +41,21 @@ class UNL_LDAP_Result implements Countable, Iterator
     private $_currentEntry = false;
     
     /**
+     * Construct an LDAP Result object
+     *
+     * @param resource &$link   Connected ldap link
+     * @param resource &$result Identifier for the result
+     */
+    public function __construct(UNL_LDAP $ldap, &$result)
+    {
+        $this->_ldap   = $ldap;
+        $this->_result = $result;
+        $this->_valid  = true;
+        
+        $this->_currentEntry = ldap_first_entry($this->_ldap->getLink(), $this->_result);
+    }
+
+    /**
      * Resets the iterator to the first entry in the result set.
      *
      * @return void
@@ -108,20 +123,6 @@ class UNL_LDAP_Result implements Countable, Iterator
         return ldap_count_entries($this->_ldap->getLink(), $this->_result);
     }
     
-    /**
-     * Construct an LDAP Result object
-     *
-     * @param resource &$link   Connected ldap link
-     * @param resource &$result Identifier for the result
-     */
-    public function __construct(UNL_LDAP $ldap, &$result)
-    {
-        $this->_ldap   = $ldap;
-        $this->_result = $result;
-        $this->_valid  = true;
-        
-        $this->_currentEntry = ldap_first_entry($this->_ldap->getLink(), $this->_result);
-    }
     
     /**
      * frees the ldap result set
