@@ -32,13 +32,13 @@ class UNL_LDAP_Result implements Countable, Iterator
      * 
      * @var UNL_LDAP
      */
-    private $_ldap;
+    protected $_ldap;
 
-    private $_result;
+    protected $_result;
     
-    private $_valid = false;
+    protected $_valid = false;
     
-    private $_currentEntry = false;
+    protected $_currentEntry = false;
     
     /**
      * Construct an LDAP Result object
