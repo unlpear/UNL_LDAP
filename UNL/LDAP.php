@@ -91,6 +91,7 @@ class UNL_LDAP
         }
         if ($this->_ldap = ldap_connect($this->options['uri'])) {
             if (ldap_bind($this->_ldap, $this->options['bind_dn'], $this->options['bind_password'])) {
+                $this->options['bind_password'] = '****';
                 return $this;
             }
             throw new UNL_LDAP_Exception('Connection failure: ldap_bind() returned false for the server.');
