@@ -93,14 +93,13 @@ class UNL_LDAP_Result implements Countable, Iterator
     }
     
     /**
-     * returns a key for this entry within the array
+     * returns the dn for this entry
      *
-     * @return unknown
+     * @return string
      */
     function key()
     {
-        //FIXME
-        return $this->_currentEntry;
+        return $this->current()->dn();
     }
     
     /**
@@ -122,7 +121,6 @@ class UNL_LDAP_Result implements Countable, Iterator
     {
         return ldap_count_entries($this->_ldap->getLink(), $this->_result);
     }
-    
     
     /**
      * frees the ldap result set
