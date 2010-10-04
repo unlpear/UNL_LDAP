@@ -179,7 +179,7 @@ class UNL_LDAP
         if ($sr === false) {
             throw new UNL_LDAP_Exception('Search failed');
         }
-        return new UNL_LDAP_Result($this->_ldap, $sr);
+        return new UNL_LDAP_Result($this, $sr);
     }
     
     /**

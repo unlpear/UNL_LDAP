@@ -27,7 +27,12 @@ require_once 'UNL/LDAP/Entry.php';
  */
 class UNL_LDAP_Result implements Countable, Iterator
 {
-    private $_link;
+    /**
+     * The UNL_LDAP object
+     * 
+     * @var UNL_LDAP
+     */
+    private $_ldap;
 
     private $_result;
     
@@ -42,7 +47,7 @@ class UNL_LDAP_Result implements Countable, Iterator
      */
     function rewind()
     {
-        $this->_currentEntry = ldap_first_entry($this->_link, $this->_result);
+        $this->_currentEntry = ldap_first_entry($this->_ldap->getLink(), $this->_result);
     }
     
     /**
@@ -52,7 +57,7 @@ class UNL_LDAP_Result implements Countable, Iterator
      */
     function current()
     {
-        return new UNL_LDAP_Entry($this->_link, $this->_currentEntry);
+        return new UNL_LDAP_Entry($this->_ldap, $this->_currentEntry);
     }
     
     /**
@@ -63,7 +68,7 @@ class UNL_LDAP_Result implements Countable, Iterator
     function next()
     {
         if ($this->_currentEntry !== false 
-            && $this->_currentEntry = ldap_next_entry($this->_link,
+            && $this->_currentEntry = ldap_next_entry($this->_ldap->getLink(),
                                                       $this->_currentEntry)) {
             return $this->current();
         } else {
@@ -100,7 +105,7 @@ class UNL_LDAP_Result implements Countable, Iterator
      */
     public function count()
     {
-        return ldap_count_entries($this->_link, $this->_result);
+        return ldap_count_entries($this->_ldap->getLink(), $this->_result);
     }
     
     /**
@@ -109,13 +114,13 @@ class UNL_LDAP_Result implements Countable, Iterator
      * @param resource &$link   Connected ldap link
      * @param resource &$result Identifier for the result
      */
-    public function __construct(&$link, &$result)
+    public function __construct(UNL_LDAP $ldap, &$result)
     {
-        $this->_link   = $link;
+        $this->_ldap   = $ldap;
         $this->_result = $result;
         $this->_valid  = true;
         
-        $this->_currentEntry = ldap_first_entry($this->_link, $this->_result);
+        $this->_currentEntry = ldap_first_entry($this->_ldap->getLink(), $this->_result);
     }
     
     /**
@@ -138,7 +143,7 @@ class UNL_LDAP_Result implements Countable, Iterator
      */
     public function sort($attr)
     {
-        if (!ldap_sort($this->_link, $this->_result, $attr)) {
+        if (!ldap_sort($this->_ldap->getLink(), $this->_result, $attr)) {
             throw new Exception('Failed to sort by '.$attr);
         }
     }

@@ -37,9 +37,9 @@ class UNL_LDAP_Entry
      * @param resource &$link LDAP connection
      * @param resource $entry Entry resource from ldap_next_entry
      */
-    function __construct(&$link, $entry)
+    function __construct(UNL_LDAP &$ldap, $entry)
     {
-        $this->_attributes = ldap_get_attributes($link, $entry);
+        $this->_attributes = ldap_get_attributes($ldap->getLink(), $entry);
     }
     
     /**
