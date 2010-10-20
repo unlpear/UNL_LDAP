@@ -192,7 +192,17 @@ class UNL_LDAP
     {
         return $this->_ldap;
     }
-    
+
+    /**
+     * set the ldap connection resource link
+     *
+     * @return resource
+     */
+    public function setLink(&$link)
+    {
+        $this->_ldap = $link;
+    }
+
     /**
      * unbinds from the ldap directory.
      * 
