@@ -1,3 +1,6 @@
 Feature Release
 
 Communication with the UNL LDAP servers now uses StarTLS and LDAP v3
+
+Clients may need to modify settings to connect securely. See the IDM LDAP
+documentation for more information: https://idm.unl.edu/using-unls-ldap-service
