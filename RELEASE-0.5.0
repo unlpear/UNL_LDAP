@@ -1,0 +1,3 @@
+Feature Release
+
+Communication with the UNL LDAP servers now uses StarTLS and LDAP v3
